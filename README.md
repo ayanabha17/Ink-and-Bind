@@ -12,7 +12,7 @@ A complete, production-ready full-stack e-commerce bookstore application built w
 - JWT-based authentication
 - Role-based access control (Admin/User)
 - Secure password hashing with bcrypt
-- httpOnly cookies for enhanced security
+- HTTP Only cookies for enhanced security
 
 ### 📖 Book Management
 - Browse books with pagination
@@ -72,7 +72,7 @@ A complete, production-ready full-stack e-commerce bookstore application built w
 
 ### 1. Clone Repository
 ```bash
-git clone https://github.com/ayanabha17/bookstore-mern.git
+git clone https://github.com/ayanabha17/Ink-and-Bind.git
 cd ink-and-bind
 ```
 
@@ -192,8 +192,8 @@ MIT License - see [LICENSE](LICENSE) file for details.
 
 ## 📞 Contact
 
-- **Repository:** https://github.com/ayanabha17/bookstore-mern
-- **Issues:** https://github.com/ayanabha17/bookstore-mern/issues
+- **Repository:** https://github.com/ayanabha17/ink-and-bind.git
+- **Issues:**  https://github.com/ayanabha17/ink-and-bind.git
 - **Project Name:** Ink and Bind
 
 ---
