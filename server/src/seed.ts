@@ -14,9 +14,16 @@ dotenv.config();
 
 // 1. Define your starter data
 const sampleBooks = [
-  { title: 'The Great Gatsby', author: 'F. Scott Fitzgerald', price: 15.99 },
-  { title: '1984', author: 'George Orwell', price: 12.99 },
-  { title: 'Dune', author: 'Frank Herbert', price: 19.99 }
+  { title: 'The Great Gatsby', author: 'F. Scott Fitzgerald', price: 15.99 },
+  { title: '1984', author: 'George Orwell', price: 12.99 },
+  { title: 'Dune', author: 'Frank Herbert', price: 19.99 },
+  { title: 'Introduction to Algorithms', author: 'Thomas H. Cormen', price: 85.00 },
+  { title: 'Operating System Concepts', author: 'Abraham Silberschatz', price: 75.50 },
+  { title: 'Computer Networking: A Top-Down Approach', author: 'James Kurose', price: 65.99 },
+  { title: 'Designing Data-Intensive Applications', author: 'Martin Kleppmann', price: 45.00 },
+  { title: 'Clean Code', author: 'Robert C. Martin', price: 42.50 },
+  { title: 'Neuromancer', author: 'William Gibson', price: 14.99 },
+  { title: 'Project Hail Mary', author: 'Andy Weir', price: 22.50 }
 ];
 
 const seedDatabase = async () => {
