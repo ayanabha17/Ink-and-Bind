@@ -6,8 +6,8 @@ import dns from 'dns'; // 1. Add the dns import
 dns.setServers(['8.8.8.8', '8.8.4.4']);
 
 // NOTE: You will need to import your actual models here once you create them!
-// import Book from './models/bookModel';
-// import User from './models/userModel';
+ import Book from './models/bookModel';
+ import User from './models/userModel';
 
 // Load your .env variables so we can read the MONGO_URI
 dotenv.config();
@@ -36,12 +36,12 @@ const seedDatabase = async () => {
     console.log('✅ MongoDB Connected for Seeding');
 
     // 3. Wipe the old data clean (Uncomment when your models are ready)
-    // await Book.deleteMany();
-    // await User.deleteMany();
+    await Book.deleteMany();
+    await User.deleteMany();
     console.log('🗑️  Old data destroyed');
 
     // 4. Insert the fresh data (Uncomment when your models are ready)
-    // await Book.insertMany(sampleBooks);
+    await Book.insertMany(sampleBooks);
     console.log('🌱 Database seeded successfully!');
 
     // 5. Tell the script to gracefully shut down
