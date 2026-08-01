@@ -1,0 +1,8 @@
+PORT=4000
+MONGO_URI=mongodb://localhost:27017/bookstore
+JWT_SECRET=change_me_to_a_strong_random_string_32_chars_min
+NODE_ENV=development
+CLOUDINARY_CLOUD_NAME=your_cloud_name
+CLOUDINARY_API_KEY=your_api_key
+CLOUDINARY_API_SECRET=your_api_secret
+CLIENT_URL=http://localhost:5173
