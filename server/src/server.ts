@@ -72,6 +72,25 @@ app.get('/api/books', async (req, res) => {
   }
 });
 
+// GET a single book by its ID
+app.get('/api/books/:id', async (req, res) => {
+  try {
+    // req.params.id grabs the ID straight out of the URL URL
+    const book = await Book.findById(req.params.id);
+    
+    // If Mongoose can't find a book with that ID, send a 404 Not Found
+    if (!book) {
+      return res.status(404).json({ message: 'Book not found' });
+    }
+    
+    // If found, send the book data
+    res.status(200).json(book);
+  } catch (error) {
+    console.error('Error fetching single book:', error);
+    res.status(500).json({ message: 'Server error fetching book' });
+  }
+});
+
 // Start server regardless of MongoDB connection
 app.listen(PORT, () => {
   console.log(`🚀 Server running on port ${PORT}`);
