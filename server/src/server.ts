@@ -13,6 +13,8 @@ import cartRoutes from './routes/cart';
 import orderRoutes from './routes/orders';
 import uploadRoutes from './routes/upload';
 
+import Book from './models/bookModel';
+
 dotenv.config();
 
 const app: Application = express();
@@ -55,6 +57,20 @@ mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/ink-and-bin
     console.warn('⚠️  MongoDB connection error:', err.message);
     console.log('📝 Running in demo mode without database');
   });
+
+// Fetch all books from the database
+app.get('/api/books', async (req, res) => {
+  try {
+    // Book.find() tells Mongoose to grab every document in the collection
+    const books = await Book.find();
+    
+    // Send the books back to the browser as a JSON response
+    res.status(200).json(books);
+  } catch (error) {
+    console.error('Error fetching books:', error);
+    res.status(500).json({ message: 'Server error fetching books' });
+  }
+});
 
 // Start server regardless of MongoDB connection
 app.listen(PORT, () => {
