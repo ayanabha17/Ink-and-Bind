@@ -136,10 +136,8 @@ npm run dev
 See `docs/DEPLOYMENT.md` for complete deployment guide.
 
 
-```markdown
 ## 📁 Project Structure
-
-```
+```text
 ink-and-bind/
 ├── server/                  # Backend
 │   ├── src/
@@ -156,6 +154,8 @@ ink-and-bind/
 │   └── package.json
 ├── docs/                    # Documentation
 └── README.md
+```
+
 ## 📧 Environment Variables
 
 ### Backend (.env)
@@ -193,7 +193,7 @@ MIT License - see [LICENSE](LICENSE) file for details.
 ## 📞 Contact
 
 - **Repository:** https://github.com/ayanabha17/ink-and-bind.git
-- **Issues:**  https://github.com/ayanabha17/ink-and-bind.git
+- **Issues:** https://github.com/ayanabha17/ink-and-bind/issues
 - **Project Name:** Ink and Bind
 
 ---
