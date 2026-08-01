@@ -1,13 +1,13 @@
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 
-// NOTE: You will need to import your actual models here once you create them!
-// import Book from './models/bookModel';
-// import User from './models/userModel';
-
 import dns from 'dns'; // 1. Add the dns import
 // 2. Inject the DNS override to bypass the ISP block
 dns.setServers(['8.8.8.8', '8.8.4.4']);
+
+// NOTE: You will need to import your actual models here once you create them!
+// import Book from './models/bookModel';
+// import User from './models/userModel';
 
 // Load your .env variables so we can read the MONGO_URI
 dotenv.config();
