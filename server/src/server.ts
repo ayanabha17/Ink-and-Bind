@@ -1,26 +1,28 @@
-import express, { Application, Request, Response } from 'express';
+import express, { Application, Request, Response, NextFunction } from 'express';
 import mongoose from 'mongoose';
 import dns from 'dns';
-dns.setServers(['8.8.8.8', '8.8.4.4']);
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import dotenv from 'dotenv';
 import path from 'path';
 
+// 1. Bypass ISP block
+dns.setServers(['8.8.8.8', '8.8.4.4']);
+
+// 2. Load Environment Variables
+dotenv.config();
+
+// 3. Import Routers
 import authRoutes from './routes/auth';
 import bookRoutes from './routes/books';
 import cartRoutes from './routes/cart';
 import orderRoutes from './routes/orders';
 import uploadRoutes from './routes/upload';
 
-import Book from './models/bookModel';
-
-dotenv.config();
-
 const app: Application = express();
 const PORT = process.env.PORT || 4000;
 
-// Middleware
+// 4. Global Middleware
 app.use(cors({
   origin: process.env.CLIENT_URL || 'http://localhost:5173',
   credentials: true
@@ -28,27 +30,27 @@ app.use(cors({
 app.use(express.json());
 app.use(cookieParser());
 
-// Routes
+// 5. API Routes (Delegated to dedicated router files)
 app.use('/api/auth', authRoutes);
-app.use('/api/books', bookRoutes);
+app.use('/api/books', bookRoutes); 
 app.use('/api/cart', cartRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/upload', uploadRoutes);
 
-// Health check
+// 6. Health Check Endpoint
 app.get('/api/health', (req: Request, res: Response) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 
-// Error handling middleware
-app.use((err: any, req: Request, res: Response, next: any) => {
+// 7. Global Error Handler
+app.use((err: any, req: Request, res: Response, next: NextFunction) => {
   console.error(err.stack);
   res.status(err.status || 500).json({
     error: err.message || 'Internal Server Error'
   });
 });
 
-// Connect to MongoDB
+// 8. MongoDB Connection
 mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/ink-and-bind')
   .then(() => {
     console.log('✅ MongoDB connected');
@@ -58,40 +60,7 @@ mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/ink-and-bin
     console.log('📝 Running in demo mode without database');
   });
 
-// Fetch all books from the database
-app.get('/api/books', async (req, res) => {
-  try {
-    // Book.find() tells Mongoose to grab every document in the collection
-    const books = await Book.find();
-    
-    // Send the books back to the browser as a JSON response
-    res.status(200).json(books);
-  } catch (error) {
-    console.error('Error fetching books:', error);
-    res.status(500).json({ message: 'Server error fetching books' });
-  }
-});
-
-// GET a single book by its ID
-app.get('/api/books/:id', async (req, res) => {
-  try {
-    // req.params.id grabs the ID straight out of the URL URL
-    const book = await Book.findById(req.params.id);
-    
-    // If Mongoose can't find a book with that ID, send a 404 Not Found
-    if (!book) {
-      return res.status(404).json({ message: 'Book not found' });
-    }
-    
-    // If found, send the book data
-    res.status(200).json(book);
-  } catch (error) {
-    console.error('Error fetching single book:', error);
-    res.status(500).json({ message: 'Server error fetching book' });
-  }
-});
-
-// Start server regardless of MongoDB connection
+// 9. Start Server
 app.listen(PORT, () => {
   console.log(`🚀 Server running on port ${PORT}`);
   console.log(`📍 API: http://localhost:${PORT}/api/health`);
