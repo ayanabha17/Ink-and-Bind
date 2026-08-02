@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 export default function BookList() {
@@ -18,19 +19,26 @@ export default function BookList() {
       });
   }, []);
 
-  if (isLoading) return Loading the library...;
+  if (isLoading) return <div>Loading the library...</div>;
 
   return (
-    
-      Our Book Collection
+    <div style={{ display: 'grid', gap: '1rem', padding: '2rem' }}>
+      <h2>Our Book Collection</h2>
       
       {books.map((book: any) => (
-        
-          {book.title}
-          Author: {book.author}
-          Price: ${book.price}
-        
+        // Wrap the card in a Link tag pointing to the book's specific ID
+        <Link 
+          to={`/book/${book._id}`} 
+          key={book._id} 
+          style={{ textDecoration: 'none', color: 'inherit' }}
+        >
+          <div style={{ border: '1px solid #ccc', padding: '1rem', borderRadius: '8px', cursor: 'pointer' }}>
+            <h3>{book.title}</h3>
+            <p><strong>Author:</strong> {book.author}</p>
+            <p><strong>Price:</strong> ${book.price}</p>
+          </div>
+        </Link>
       ))}
-    
+    </div>
   );
 }

@@ -12,6 +12,7 @@ import Orders from './pages/Orders'
 import AdminBooks from './pages/admin/Books'
 import AdminOrders from './pages/admin/Orders'
 import './index.css'
+import BookDetail from './components/BookDetail';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
@@ -23,6 +24,10 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
             <Route path="login" element={<Login />} />
             <Route path="signup" element={<Signup />} />
             <Route path="books/:id" element={<BookDetails />} />
+            
+            {/* HERE IS YOUR NEW ROUTE! */}
+            <Route path="book/:id" element={<BookDetail />} />
+            
             <Route path="cart" element={<Cart />} />
             <Route path="orders" element={<Orders />} />
             <Route path="admin/books" element={<AdminBooks />} />
