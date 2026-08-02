@@ -1,3 +1,3 @@
 export default function Signup() {
-  return Signup Page;
+  return <div>Signup Page</div>;
 }
